@@ -2,38 +2,64 @@ package Brief_ExcercicesDeBasePOO;
 
 public class Triangle {
 
-	private double c1 = 3;
-	private double c2 = 4;
-	private double c3 = 5;
-	private int p1 = 1;
-	private int p2 = 2;
-	private int p3 = 6;
+	Point a = new Point(2, 4);
+	Point b = new Point(3, 4);
+	Point c = new Point(5, 6);
+	private double ab = getDistance(a,b);
+	private double ac = getDistance(a,c);
+	private double bc = getDistance(b,c);
+	
+	
+	/**
+	 * Constructor
+	 */
+	public Triangle() {
+		
+	}
+	
+	/**
+	 * Constructor with param
+	 * @param num1
+	 * @param num2
+	 * @param num3
+	 */
+	public Triangle(Point num1, Point num2, Point num3) {
+		a = num1;
+		b = num2;
+		c = num3;
+		ab = getDistance(a,b);
+		ac = getDistance(a,c);
+		bc = getDistance(b,c);
+	}
 	
 	/**
 	 * Calculer le périmètre
 	 */
 	public void perimetre() {
-		double p = c1 + c2+ c3;
-		System.out.println("Périmètre: " + p);
+		double perim = ab + ac+ bc;
+		System.out.println("Périmètre: " + perim);
 	}
 	
 	/**
 	 * Calculer l'aire
 	 */
 	public void aire() {
-		double a = (Math.sqrt((c1+c2+c3)*(c2+c3-c1)*(c1-c2+c3)*(c1+c2-c3)))/4;
-		System.out.println("Aire: " + a);
+		double aire = (Math.sqrt((ab+ac+bc)*(ac+bc-ab)*(ab-ac+bc)*(ab+ac-bc)))/4;
+		System.out.println("Aire: " + aire);
 	}
 	
 	/**
 	 * Déplacer les coordonnées en x du triangle
 	 */
-	public void moveTriangleX(int move) {
-		System.out.println("Old coordinates: " + p1 + " " + p2 + " " + p3);
-		p1 = p1 + move;
-		p2 = p2 + move;
-		p3 = p3 + move;
-		System.out.println("New coordinates: " + p1 + " " + p2 + " " + p3);
+	public void moveTriangle(double moveX, double moveY) {
+		System.out.println("Old coordinates: Pa(" + a.getX() + "," + a.getY() + ") Pb(" + b.getX() + "," + b.getY() + ") Pc(" + c.getX() + "," + c.getY() + ")");
+		a.setX(a.getX()+moveX);
+		a.setY(a.getY()+moveY);
+		b.setX(a.getX()+moveX);
+		b.setY(a.getY()+moveY);
+		c.setX(a.getX()+moveX);
+		c.setY(a.getY()+moveY);
+		System.out.println("New coordinates: Pa(" + a.getX() + "," + a.getY() + ") Pb(" + b.getX() + "," + b.getY() + ") Pc(" + c.getX() + "," + c.getY() + ")");
 	}
 	
 	/**
@@ -41,10 +67,14 @@ public class Triangle {
 	 * @param value
 	 */
 	public void reduce(int value) {
-		System.out.println("Old size: " + c1 + " " + c2 + " " + c3);
-		c1 = c1/value;
-		c2 = c2/value;
-		c3 = c3/value;
-		System.out.println("New size: " + c1 + " " + c2 + " " + c3);
+		System.out.println("Old size: " + ab + " " + ac + " " + bc);
+		ab = ab/value;
+		ac = ac/value;
+		bc = bc/value;
+		System.out.println("New size: " + ab + " " + ac + " " + bc);
+	}
+	
+	private double getDistance(Point first, Point second) {
+		return Math.sqrt(Math.pow(first.getX()-second.getX(), 2) + Math.pow(first.getY()-second.getY(), 2));
 	}
 }

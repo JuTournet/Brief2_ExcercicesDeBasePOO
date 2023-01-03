@@ -22,7 +22,7 @@ public class main {
 		Triangle unTriangle = new Triangle();
 		unTriangle.perimetre();
 		unTriangle.aire();
-		unTriangle.moveTriangleX(5);
+		unTriangle.moveTriangle(5, 7);
 		unTriangle.reduce(3);
 		
 		
